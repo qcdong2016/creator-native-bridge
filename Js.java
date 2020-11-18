@@ -1,4 +1,4 @@
-package org.cocos2dx.javascript;
+package com.cocos2dx.javascript;
 
 import android.util.Log;
 import android.widget.Toast;
@@ -30,6 +30,26 @@ public class Js{
 
     static private Cocos2dxActivity getCtx() {
         return (Cocos2dxActivity) Cocos2dxActivity.getContext();
+    }
+
+    public static void callGlobal(String fname, Object ...args) {
+        if (fname == null || fname.isEmpty()) {
+            return;
+        }
+
+        String[] s = new String[args.length];
+
+        String str = fname + "(";
+
+        for (Object o : args) {
+            if (o instanceof String) {
+                str += "'" + o.toString() + "', ";
+            } else {
+                str += o.toString() + ", ";
+            }
+        }
+
+        eval(str + "undefined)");
     }
 
 

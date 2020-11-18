@@ -1,12 +1,7 @@
 
-#include "jsapi.h"
-#include "jsfriendapi.h"
-
-#include "base/CCScheduler.h"
-#include "base/CCDirector.h"
-#include "ScriptingCore.h"
-#include "platform/CCFileUtils.h"
 #import "Js.h"
+#include <functional>
+
 
 NSString * const Yes = @"yes";
 NSString * const No  = @"no";
@@ -46,15 +41,16 @@ namespace Js{
     void eval(NSString* content) {
         eval(std::string([content UTF8String]));
     }
+   
+    
+    static EvalFunc efunc;
+    void setEvalFunc(const EvalFunc& func) {
+        efunc = func;
+    }
     
     void eval(std::string content) {
         NSLog(@"evalString: %s", content.c_str());
-        cocos2d::Scheduler* sc = cocos2d::Director::getInstance()->getScheduler();
-        sc->performFunctionInCocosThread([=](){
-            ScriptingCore* core = ScriptingCore::getInstance();
-            if (!core->evalString(content.c_str())) {
-                NSLog(@"evalString fail.");
-            }
-        });
+        efunc(content);
     }
+    
 }
