@@ -36,11 +36,13 @@ class SomeClass {
 - 拷贝Js.java 到安卓 org/cocos2dx/javascript 下
 - ios这边因为Api经常变，需要设置一下js调用方式：
     如果有报错请自行修改。
+```objective-c
     Js::setEvalFunc([](std::string content) {
         if (!se::ScriptEngine::getInstance()->evalString(content.c_str())) {
             NSLog(@"evalString fail.");
         }
     });
+```
 
 ### 注意
 - 在ios端调用js时候，bool值必须使用 Yes 和 No
