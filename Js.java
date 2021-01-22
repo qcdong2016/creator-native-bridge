@@ -15,7 +15,7 @@ public class Js{
 
         String[] s = new String[args.length];
 
-        String str = "js_native_cb('" + fname + "', ";
+        String str = "native.callback('" + fname + "', ";
 
         for (Object o : args) {
             if (o instanceof String) {

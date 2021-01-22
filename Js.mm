@@ -33,7 +33,7 @@ namespace Js{
             }
         }
         
-        NSString* s = [NSString stringWithFormat:@"js_native_cb(%@, %@)", cb, [ma componentsJoinedByString:@", "]];
+        NSString* s = [NSString stringWithFormat:@"native.callback(%@, %@)", cb, [ma componentsJoinedByString:@", "]];
         
         eval(s);
     }
