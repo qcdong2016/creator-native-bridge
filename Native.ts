@@ -84,7 +84,7 @@ export class Native {
 						break;
 					case 'number':
 						sig += AndrodSign.Float;
-						real_args.push(v + "");
+						real_args.push(v);
 						break;
 					case 'function':
 						sig += AndrodSign.String;
